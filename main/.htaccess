@@ -1,1 +1,5 @@
+RewriteEngine On
+
 Options -Indexes
+
+RewriteRule ^Asset(.*)$ /asset$1 [R=301,L]

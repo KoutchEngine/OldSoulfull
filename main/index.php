@@ -1,6 +1,5 @@
 <?php
     include 'configuration/loadmodules.php';
-    $site = new Site();
     $site->LoginState(true, false);
     /*
     add this code back if there are possible plans for soulfull on iOS or mac

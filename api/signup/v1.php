@@ -29,7 +29,7 @@
                 'birthday' => $userinfo['birthday'],
                 'ticket' => $authticket
             ]);
-            setcookie('.ROBLOSECURITY', $authticket, time() + (12 * 24 * 39 * 35 ), "/", ".s16rev.xyz");
+            setcookie('.ROBLOSECURITY', $authticket, time() + (12 * 24 * 39 * 35 ), "/", ".".$url);
             sleep(2);
         }
     }
