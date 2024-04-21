@@ -1,0 +1,8 @@
+26.136.77.48 s16rev.xyz
+26.136.77.48 www.s16rev.xyz
+26.136.77.48 api.s16rev.xyz
+26.136.77.48 ephemeralcounters.api.s16rev.xyz
+26.136.77.48 ecsv2.s16rev.xyz
+26.136.77.48 assetgame.s16rev.xyz
+26.136.77.48 clientsettings.api.s16rev.xyz
+26.136.77.48 versioncompatibility.api.s16rev.xyz
