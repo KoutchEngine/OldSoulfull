@@ -22,6 +22,7 @@
         {
             global $db;
             global $user;
+            global $url;
             $query = "SELECT * FROM users WHERE authticket=:ticket";
             $usercheck = $db->prepare($query);
             $usercheck->execute(['ticket' => htmlspecialchars(filter_var($_COOKIE['_ROBLOSECURITY']))]);
@@ -31,14 +32,14 @@
                 $user = $usercheck;
                 if($LoggedInRedirect)
                 {
-                    header('Location: https://www.s16rev.xyz/home');
+                    header('Location: https://www.'.$url.'/home');
                 }
             } else {
-                setcookie('.ROBLOSECURITY', 'no', 0, '/', '.s16rev.xyz');
+                setcookie('.ROBLOSECURITY', 'no', 0, '/', '.'.$url);
                 sleep(2);
                 if($NotLoggedInRedirect)
                 {
-                    header('Location: https://www.s16rev.xyz');
+                    header('Location: https://www.'.$url);
                 }
             }
         }
