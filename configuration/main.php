@@ -18,25 +18,134 @@
             return $id;
         }
 
+        public function getPlace($id)
+        {
+            global $db;
+            $query = "SELECT * FROM places WHERE id=:id";
+            $gamescheck = $db->prepare($query);
+            $gamescheck->execute(['id' => $id]);
+            $gamescheck = $gamescheck->fetch();
+            return $gamescheck;
+        }
+
+        public function getGame($id)
+        {
+            global $db;
+            $query = "SELECT * FROM games WHERE id=:id";
+            $gamescheck = $db->prepare($query);
+            $gamescheck->execute(['id' => $id]);
+            $gamescheck = $gamescheck->fetch();
+            return $gamescheck;
+        }
+
+        public function getUser($id)
+        {
+            global $db;
+            $query = "SELECT * FROM users WHERE id=:id";
+            $gamescheck = $db->prepare($query);
+            $gamescheck->execute(['id' => $id]);
+            $gamescheck = $gamescheck->fetch();
+            return $gamescheck;
+        }
+
+        public function getBadge($id)
+        {
+            global $db;
+            $query = "SELECT * FROM badges WHERE badgeId=:id";
+            $gamescheck = $db->prepare($query);
+            $gamescheck->execute(['id' => $id]);
+            $gamescheck = $gamescheck->fetch();
+            return $gamescheck;
+        }
+
+        public function userOwnsItem($userid, $itemid)
+        {
+            global $db;
+            $query = "SELECT * FROM owneditems WHERE userId=:id2 AND itemId=:id";
+            $gamescheck = $db->prepare($query);
+            $gamescheck->execute(['id' => $itemid, 'id2' => $userid]);
+            $gamescheck = $gamescheck->fetch();
+            return $gamescheck;
+        }
+
+        public function setBrowserTrackerId($userid, $ip)
+        {
+            global $db;
+            $browserTrackerId = bin2hex(random_bytes(10));
+            $query = "INSERT INTO `browsertrackerids`(`userid`, `ip`, `id`) VALUES (:id2, :ip, :id)";
+            $addbti = $db->prepare($query);
+            $addbti->execute(['id' => $browserTrackerId, 'id2' => $userid, 'ip' => $ip]);
+            return $browserTrackerId;
+        }
+
+        public function getBrowserTrackerId($id)
+        {
+            global $db;
+            $query = "SELECT * FROM browsertrackerids WHERE id=:id";
+            $gamescheck = $db->prepare($query);
+            $gamescheck->execute(['id' => $id]);
+            $gamescheck = $gamescheck->fetch();
+            return $gamescheck;
+        }
+
+        public function getBrowserTrackerIdFromIp($ip)
+        {
+            global $db;
+            $query = "SELECT * FROM browsertrackerids WHERE ip=:ip";
+            $gamescheck = $db->prepare($query);
+            $gamescheck->execute(['ip' => $ip]);
+            $gamescheck = $gamescheck->fetch();
+            return $gamescheck;
+        }
+
         public function LoginState($LoggedInRedirect, $NotLoggedInRedirect)
         {
             global $db;
             global $user;
             global $url;
-            $query = "SELECT * FROM users WHERE authticket=:ticket";
-            $usercheck = $db->prepare($query);
-            $usercheck->execute(['ticket' => htmlspecialchars(filter_var($_COOKIE['_ROBLOSECURITY']))]);
-            $usercheck = $usercheck->fetch();
+            global $loggedin;
+            global $site;
 
-            if($usercheck) {
-                $user = $usercheck;
-                if($LoggedInRedirect)
-                {
-                    header('Location: https://www.'.$url.'/home');
+            $loggedin = false;
+            if(isset($_COOKIE['_ROBLOSECURITY']))
+            {
+                $query = "SELECT * FROM users WHERE authticket=:ticket";
+                $usercheck = $db->prepare($query);
+                $usercheck->execute(['ticket' => htmlspecialchars(filter_var($_COOKIE['_ROBLOSECURITY']))]);
+                $usercheck = $usercheck->fetch();
+
+                if($usercheck) {
+                    $user = $usercheck;
+                    $loggedin = true;
+                    if($LoggedInRedirect)
+                    {
+                        header('Location: https://www.'.$url.'/home');
+                    } else {
+                        if(isset($_COOKIE['browserTrackerId']))
+                        {
+                            $bti = htmlspecialchars(filter_var($_COOKIE['browserTrackerId']));
+                            if($site->getBrowserTrackerId($bti))
+                            {
+                            } else {
+                                $bti = $site->setBrowserTrackerId($user['id'], $_SERVER['REMOTE_ADDR']);
+                                setcookie('browserTrackerId', $bti, time() + (10 * 365 * 24 * 60 * 60), '/', '.'.$url);
+                                sleep(2);
+                            }
+                        } else {
+                            $bti = $site->setBrowserTrackerId($user['id'], $_SERVER['REMOTE_ADDR']);
+                            setcookie('browserTrackerId', $bti, time() + (10 * 365 * 24 * 60 * 60), '/', '.'.$url);
+                            sleep(2);
+                        }
+                    }
+                } else {
+                    setcookie('.ROBLOSECURITY', 'no', time() - (10 * 365 * 24 * 60 * 60), '/', '.'.$url);
+                    sleep(2);
+                    if($NotLoggedInRedirect)
+                    {
+                        header('Location: https://www.'.$url);
+                    }
                 }
             } else {
-                setcookie('.ROBLOSECURITY', 'no', 0, '/', '.'.$url);
-                sleep(2);
                 if($NotLoggedInRedirect)
                 {
                     header('Location: https://www.'.$url);

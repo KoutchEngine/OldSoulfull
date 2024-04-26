@@ -1,5 +1,5 @@
 <?php
-    include $_SERVER['DOCUMENT_ROOT'] . '/configuration/loadmodules.php';
+    include 'C:/xampp/htdocs/configuration/global.php';
     // i hate this
     $inputstuff = file_get_contents("php://input");
     parse_str($inputstuff, $userinfo);
@@ -14,7 +14,7 @@
         $usercheck = $usercheck->fetch();
 
         if($usercheck) {
-            header('HTTP/1.1 404 Unauthorized');
+            header('HTTP/1.1 401 Unauthorized');
         } else {
             $userid = $site->createId();
             $query = "INSERT INTO `users`(`id`, `username`, `password`, `siteType`, `gamestatus`, `messagesenabled`, `inventoryprivate`, `gender`, `birthday`, `authticket`) VALUES (:id, :username, :password, '2016L', 'Online', 0, 0, :gender, :birthday, :ticket)";
@@ -29,7 +29,7 @@
                 'birthday' => $userinfo['birthday'],
                 'ticket' => $authticket
             ]);
-            setcookie('.ROBLOSECURITY', $authticket, time() + (12 * 24 * 39 * 35 ), "/", ".".$url);
+            setcookie('.ROBLOSECURITY', $authticket, time() + (10 * 365 * 24 * 60 * 60), "/", ".".$url);
             sleep(2);
         }
     }

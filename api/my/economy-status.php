@@ -1,5 +1,5 @@
 <?php
-    include $_SERVER['DOCUMENT_ROOT'] . '/configuration/loadmodules.php';
+    include 'C:/xampp/htdocs/configuration/global.php';
     $site->LoginState(false, true);
 ?>
 {

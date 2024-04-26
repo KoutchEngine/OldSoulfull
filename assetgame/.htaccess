@@ -7,3 +7,5 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^([^\.]+)$ $1.php [NC,L]
 
 RewriteRule ^Asset(.*)$ /asset$1 [R=301,L]
+
+RewriteRule ^game(.*)$ /Game$1 [R=301,L]

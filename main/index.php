@@ -1,5 +1,5 @@
 <?php
-    include 'configuration/loadmodules.php';
+    include 'C:/xampp/htdocs/configuration/global.php';
     $site->LoginState(true, false);
     /*
     add this code back if there are possible plans for soulfull on iOS or mac

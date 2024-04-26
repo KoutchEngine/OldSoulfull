@@ -1,11 +1,11 @@
 # Soulfull
-An old roblox revival including the clients 2016L and 2018E.
+an old roblox revival including the clients 2016L and 2018E.
 # How to setup
-* FIRST!! Please ask me for permission if you're just gonna host soulfull somewhere
+* FIRST!! please ask me for permission if you're just gonna host soulfull somewhere
 ## REQUIREMENTS
-* Xampp (or if you're big brain you can change xampp mentions to whatever tf u use)
-* Composer
+* xampp (or if you're big brain you can change xampp mentions to whatever tf u use)
 ## NOW the part where u setup soulfull
-* 1. Change the $url variable in configuration/main.php and db shit on configuration/database.php
-* 2. Set up composer lol (not hard)
-* 3. You're done!
+* 1. change the $url variable in configuration/main.php to your domain and db shit on configuration/database.php to your db
+* 2. change some more mentions of s16rev.xyz to your domain too
+* 3. incase you're using some website hoster that doesn't support popen like for example, CT8.PL, remove all mentions of it. theres only like a few in roblox.php
+* 4. and your done!

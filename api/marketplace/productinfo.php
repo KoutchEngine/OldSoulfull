@@ -1,21 +1,43 @@
+<?php
+    include 'C:/xampp/htdocs/configuration/global.php';
+    if(isset($_GET['assetId']))
+    {
+        $assetid = (int)$_GET['assetId'];
+        $foundThing = false;
+
+        if($site->getPlace($assetid))
+        {
+            $foundThing = $site->getPlace($assetid);
+            $name = $foundThing['gamename'];
+            $assetid = $foundThing['id'];
+            $creator = $site->getUser($foundThing['creatorId']);
+        }
+
+        if(!$foundThing) {
+            exit('{}');
+        }
+    } else {
+        exit('{}');
+    }
+?>
 {
-    "AssetId": 123456789,
+    "AssetId": <?php echo $assetid; ?>,
     "ProductId": 24870409,
-    "Name": "Classic: Crossroads",
+    "Name": "<?php echo $name; ?>",
     "Description": "",
     "AssetTypeId": 8,
     "Creator": {
-        "Id": 1,
-        "Name": "ROBLOX"
+        "Id": <?php echo $creator['id']; ?>,
+        "Name": "<?php echo $creator['username']; ?>"
     },
     "IconImageAssetId": 0,
-    "Created": "2015-06-25T20:07:49.147Z",
-    "Updated": "2015-07-11T20:07:51.863Z",
-    "PriceInRobux": 350,
+    "Created": "<?php echo $foundThing['createdTime']; ?>",
+    "Updated": "<?php echo $foundThing['updatedTime']; ?>",
+    "PriceInRobux": 0,
     "PriceInTickets": null,
     "Sales": 0,
     "IsNew": true,
-    "IsForSale": true,
+    "IsForSale": false,
     "IsPublicDomain": false,
     "IsLimited": false,
     "IsLimitedUnique": false,
