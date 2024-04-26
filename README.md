@@ -1,5 +1,5 @@
 # Soulfull
-an old roblox revival including the clients 2016L and 2018E.
+a old roblox revival including the clients 2016L and 2018E.
 # How to setup
 * FIRST!! please ask me for permission if you're just gonna host soulfull somewhere
 ## REQUIREMENTS
