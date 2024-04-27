@@ -132,9 +132,16 @@
                                 sleep(2);
                             }
                         } else {
-                            $bti = $site->setBrowserTrackerId($user['id'], $_SERVER['REMOTE_ADDR']);
-                            setcookie('browserTrackerId', $bti, time() + (10 * 365 * 24 * 60 * 60), '/', '.'.$url);
-                            sleep(2);
+                            if($site->getBrowserTrackerIdFromIp($_SERVER['REMOTE_ADDR']))
+                            {
+                                $bti = $site->getBrowserTrackerIdFromIp($_SERVER['REMOTE_ADDR']);
+                                setcookie('browserTrackerId', $bti['id'], time() + (10 * 365 * 24 * 60 * 60), '/', '.'.$url);
+                                sleep(2);
+                            } else {
+                                $bti = $site->setBrowserTrackerId($user['id'], $_SERVER['REMOTE_ADDR']);
+                                setcookie('browserTrackerId', $bti, time() + (10 * 365 * 24 * 60 * 60), '/', '.'.$url);
+                                sleep(2);
+                            }
                         }
                     }
                 } else {
@@ -156,10 +163,11 @@
         public function robloxHtml($which)
         {
             global $user;
+            global $url;
+            
             if($which == "Navigation")
             {
-                ?>
-                <div id="header" class="navbar-fixed-top rbx-header" role="navigation">
+                echo '<div id="header" class="navbar-fixed-top rbx-header" role="navigation">
     <div class="container-fluid">
         <div class="rbx-navbar-header">
             <div data-behavior="nav-notification" class="rbx-nav-collapse" onselectstart="return false;">
@@ -171,7 +179,7 @@
 
             </div>
             <div class="navbar-header">
-                <a class="navbar-brand" href="http://www.roblox.com/">
+                <a class="navbar-brand" href="http://www.'.$url.'/">
                     <span class="icon-logo"></span>
                     <span class="icon-logo-r"></span>
                 </a>
@@ -179,16 +187,16 @@
         </div>
         <ul class="nav rbx-navbar hidden-xs hidden-sm col-md-4 col-lg-3">
             <li>
-                <a class="nav-menu-title" href="https://www.roblox.com/games">Games</a>
+                <a class="nav-menu-title" href="https://www.'.$url.'/games">Games</a>
             </li>
             <li>
-                <a class="nav-menu-title" href="https://www.roblox.com/catalog">Catalog</a>
+                <a class="nav-menu-title" href="https://www.'.$url.'/catalog">Catalog</a>
             </li>
             <li>
-                <a class="nav-menu-title" href="https://www.roblox.com/develop">Develop</a>
+                <a class="nav-menu-title" href="https://www.'.$url.'/develop">Develop</a>
             </li>
             <li>
-                <a class="buy-robux nav-menu-title" href="https://www.roblox.com/upgrades/robux?ctx=nav">ROBUX</a>
+                <a class="buy-robux nav-menu-title" href="https://www.'.$url.'/upgrades/robux?ctx=nav">ROBUX</a>
             </li>
         </ul><!--rbx-navbar-->
         <div id="navbar-universal-search" class="navbar-left rbx-navbar-search col-xs-5 col-sm-6 col-md-3" data-behavior="univeral-search" role="search">
@@ -202,19 +210,19 @@
                 </div>
             </div>
             <ul data-toggle="dropdown-menu" class="dropdown-menu" role="menu">
-                <li class="rbx-navbar-search-option selected" data-searchurl="https://www.roblox.com/games/?Keyword=">
+                <li class="rbx-navbar-search-option selected" data-searchurl="https://www.'.$url.'/games/?Keyword=">
                     <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in Games</span>
                 </li>
-                        <li class="rbx-navbar-search-option" data-searchurl="https://www.roblox.com/search/users?keyword=">
+                        <li class="rbx-navbar-search-option" data-searchurl="https://www.'.$url.'/search/users?keyword=">
                             <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in People</span>
                         </li>
-                        <li class="rbx-navbar-search-option" data-searchurl="https://www.roblox.com/catalog/browse.aspx?CatalogContext=1&amp;Keyword=">
+                        <li class="rbx-navbar-search-option" data-searchurl="https://www.'.$url.'/catalog/browse.aspx?CatalogContext=1&amp;Keyword=">
                             <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in Catalog</span>
                         </li>
-                        <li class="rbx-navbar-search-option" data-searchurl="https://www.roblox.com/groups/search.aspx?val=">
+                        <li class="rbx-navbar-search-option" data-searchurl="https://www.'.$url.'/groups/search.aspx?val=">
                             <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in Groups</span>
                         </li>
-                        <li class="rbx-navbar-search-option" data-searchurl="https://www.roblox.com/develop/library?CatalogContext=2&amp;Category=6&amp;Keyword=">
+                        <li class="rbx-navbar-search-option" data-searchurl="https://www.'.$url.'/develop/library?CatalogContext=2&amp;Category=6&amp;Keyword=">
                             <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in Library</span>
                         </li>
             </ul>
@@ -230,13 +238,13 @@
         <div class="rbx-popover-content" data-toggle="popover-setting">
             <ul class="dropdown-menu" role="menu">
                 <li>
-                    <a class="rbx-menu-item" href="https://www.roblox.com/my/account">
+                    <a class="rbx-menu-item" href="https://www.'.$url.'/my/account">
                         Settings
                         <span class="xsmall nav-setting-highlight ">1</span>
                     </a>
                 </li>
-                <li><a class="rbx-menu-item" href="https://www.roblox.com/Help/Builderman.aspx" target="_blank">Help</a></li>
-                <li><a class="rbx-menu-item" data-behavior="logout" data-bind="http://www.roblox.com/authentication/logout">Logout</a></li>
+                <li><a class="rbx-menu-item" href="https://www.'.$url.'/Help/Builderman.aspx" target="_blank">Help</a></li>
+                <li><a class="rbx-menu-item" data-behavior="logout" data-bind="http://www.'.$url.'/authentication/logout">Logout</a></li>
             </ul>
         </div>
     </li>
@@ -247,8 +255,8 @@
         </a>
         <div class="rbx-popover-content" data-toggle="popover-robux">
             <ul class="dropdown-menu" role="menu">
-                <li><a href="https://www.roblox.com/My/Money.aspx#/#Summary_tab" id="nav-robux-balance" class="rbx-menu-item">629 ROBUX</a></li>
-                <li><a href="https://www.roblox.com/upgrades/robux?ctx=navpopover" class="rbx-menu-item">Buy ROBUX</a></li>
+                <li><a href="https://www.'.$url.'/My/Money.aspx#/#Summary_tab" id="nav-robux-balance" class="rbx-menu-item">629 ROBUX</a></li>
+                <li><a href="https://www.'.$url.'/upgrades/robux?ctx=navpopover" class="rbx-menu-item">Buy ROBUX</a></li>
             </ul>
         </div>
     </li>
@@ -260,21 +268,63 @@
 </ul>        </div><!-- navbar right-->
         <ul class="nav rbx-navbar hidden-md hidden-lg col-xs-12">
             <li>
-                <a class="nav-menu-title" href="https://www.roblox.com/games">Games</a>
+                <a class="nav-menu-title" href="https://www.'.$url.'/games">Games</a>
             </li>
             <li>
-                <a class="nav-menu-title" href="https://www.roblox.com/catalog/">Catalog</a>
+                <a class="nav-menu-title" href="https://www.'.$url.'/catalog/">Catalog</a>
             </li>
             <li>
-                <a class="nav-menu-title" href="https://www.roblox.com/develop">Develop</a>
+                <a class="nav-menu-title" href="https://www.'.$url.'/develop">Develop</a>
             </li>
             <li>
-                <a class="buy-robux nav-menu-title" href="https://www.roblox.com/upgrades/robux?ctx=nav">ROBUX</a>
+                <a class="buy-robux nav-menu-title" href="https://www.'.$url.'/upgrades/robux?ctx=nav">ROBUX</a>
             </li>
         </ul><!--rbx-navbar-->
     </div>
-</div>
-                <?php
+</div>';
+            } else if ($which == "Footer")
+            {
+                echo '<footer class="container-footer">
+                <div class="footer">
+                    <ul class="row footer-links">
+                            <li class="col-4 col-xs-2 footer-link">
+                                <a href="http://corp.'.$url.'" class="text-footer-nav roblox-interstitial" target="_blank">
+                                    About Us
+                                </a>
+                            </li>
+                            <li class="col-4 col-xs-2 footer-link">
+                                <a href="http://corp.'.$url.'/jobs" class="text-footer-nav roblox-interstitial" target="_blank">
+                                    Jobs
+                                </a>
+                            </li>
+                        <li class="col-4 col-xs-2 footer-link">
+                            <a href="http://blog.'.$url.'" class="text-footer-nav" target="_blank">
+                                Blog
+                            </a>
+                        </li>
+                        <li class="col-4 col-xs-2 footer-link">
+                            <a href="http://corp.'.$url.'/parents" class="text-footer-nav roblox-interstitial" target="_blank">
+                                Parents
+                            </a>
+                        </li>
+                        <li class="col-4 col-xs-2 footer-link">
+                            <a href="http://en.help.'.$url.'/" class="text-footer-nav roblox-interstitial" target="_blank">
+                                Help
+                            </a>
+                        </li>
+                        <li class="col-4 col-xs-2 footer-link">
+                            <a href="https://www.'.$url.'/Info/Privacy.aspx" class="text-footer-nav privacy" target="_blank">
+                                Privacy
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="text-footer footer-note">
+                        ROBLOX, "Online Building Toy", characters, logos, names, and all related indicia are trademarks of <a target="_blank" href="http://corp.'.$url.'" class="text-link roblox-interstitial">ROBLOX Corporation</a>, ©2016.
+                        Patents pending. ROBLOX is not sponsored, authorized or endorsed by any producer of plastic building bricks, including The LEGO Group, MEGA Brands, and K\'\Nex, and no resemblance to the products of these companies is intended.
+                        Use of this site signifies your acceptance of the <a href="https://www.'.$url.'/info/terms-of-service" target="_blank" class="text-link">Terms and Conditions</a>.
+                    </p>
+                </div>
+            </footer>';
             }
         }
     }

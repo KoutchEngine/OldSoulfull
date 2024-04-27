@@ -1,6 +1,12 @@
 <?php
+    // Things you can edit to change stuff
+    $disablepopen = false; // Setting to true will stop execInBackground from using popen, and instead exec.
+    $disableexec = false; // Setting to true will stop execInBackground from using exec.
+
+    // Things you can also edit HOWEVER, beware, as this can potientially break soulfull's backend.
     $privatekey = file_get_contents('C:/xampp/htdocs/configuration/PrivateKeys_VERYVERYPRIVATE/PrivateKey.pem');
     
+    // For here, it's advised not to touch, unless you know what you're doing.
     class Roblox {
         public function getAsset($id)
         {
@@ -13,10 +19,13 @@
         }
 
         public function execInBackground($cmd) {  
-            if (substr(php_uname(), 0, 7) == "Windows"){
+            if (substr(php_uname(), 0, 7) == "Windows" && !$disablepopen){
                 popen("start /B ". $cmd, "r"); 
-            } else { 
-                exec($cmd . " > /dev/null &");   
+            } else {
+                if(!$disableexec)
+                {
+                    exec($cmd . " > /dev/null &");
+                } 
             } 
         } 
 

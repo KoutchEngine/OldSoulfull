@@ -7,5 +7,7 @@ a old roblox revival including the clients 2016L and 2018E.
 ## NOW the part where u setup soulfull
 * 1. change the $url variable in configuration/main.php to your domain and db shit on configuration/database.php to your db
 * 2. change some more mentions of s16rev.xyz to your domain too
-* 3. incase you're using some website hoster that doesn't support popen like for example, CT8.PL, remove all mentions of it. theres only like a few in roblox.php
-* 4. and your done!
+* 3. incase you're using some website hoster that doesn't support popen like for example, CT8.PL, go to roblox.php
+and enable $disablepopen. CT8.PL has also support for exec if you enable it in its settings.
+* 4. import soulfulldbnew to your db
+* 5. and your done! have fun playing that Juicy 2006 Roblox with your Koutch's Testing Game! a
