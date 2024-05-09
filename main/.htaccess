@@ -11,3 +11,5 @@ RewriteRule ^Asset(.*)$ /asset$1 [R=301,L]
 RewriteRule ^IDE(.*)$ /ide$1 [R=301,L]
 
 RewriteRule ^Game(.*)$ /game$1 [R=301,L]
+
+RewriteRule ^games/([0-9]+)/(.*)$ games/gamepage.php?id=$1 [L]

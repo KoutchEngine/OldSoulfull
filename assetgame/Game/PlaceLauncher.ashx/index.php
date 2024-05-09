@@ -36,4 +36,4 @@
         exit('{"Error" : "Invalid request type"}');
     }
 ?>
-{"jobId":"<?php echo $jobid; ?>","status":2,"joinScriptUrl":"http://assetgame.<?php echo $url; ?>/Game/Join.ashx?placeId=<?php echo $place['id']; ?>&jobid=<?php echo $jobid; ?>","authenticationUrl":"https://assetgame.<?php echo $url; ?>/Login/Negotiate.ashx","authenticationTicket": "<?php echo $user['authticket']; ?>","message":"Success"}
+{"status":2,"joinScriptUrl":"http://assetgame.<?php echo $url; ?>/Game/Join.ashx?placeId=<?php echo $place['id']; ?>&jobid=<?php echo $jobid; ?>","authenticationUrl":"https://assetgame.<?php echo $url; ?>/Login/Negotiate.ashx","authenticationTicket": "<?php echo $user['authticket']; ?>","message":"Success"}
