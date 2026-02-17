@@ -13,3 +13,6 @@ And even then, I don't recommend anyone to use this, it's vulnerable and broken 
 
 So yes, that's it. Goodbye. Feel free to use this for research or something, I don't care
 (The soulfulldbnew.sql is outdated by the way, the latest SQL file is lost to time)
+
+# Credits
+I would like to say thank you to 2 anoymous people for helping me work on Soulfull. Your help was appreciated.
