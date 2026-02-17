@@ -1,8 +1,8 @@
 <?php
-    include 'C:/xampp/htdocs/configuration/Assemblies/Roblox/Grid/Rcc/RCCServiceSoap.php';
-    include 'C:/xampp/htdocs/configuration/global.php';
-    $x = 100;
-    $y = 100;
+    include 'C:/wamp64/www/configuration/Assemblies/Roblox/Grid/Rcc/RCCServiceSoap.php';
+    include 'C:/wamp64/www/configuration/global.php';
+    $x = 1;
+    $y = 1;
     $userid = 1;
 
     if(isset($_GET['x'])) {
@@ -18,16 +18,16 @@
         $userid = (int)$_GET['userId'];
     }
 
-    if(file_exists('C:/xampp/htdocs/configuration/Renders/Users/'.$userid.'-fullshot-'.$x.'-'.$y.'.png'))
+    if(file_exists('C:/wamp64/www/main/Renders/Users/'.$userid.'-fullshot-'.$x.'-'.$y.'.png'))
     {
-        $render = file_get_contents('C:/xampp/htdocs/configuration/Renders/Users/'.$userid.'-fullshot-'.$x.'-'.$y.'.png');
+        $render = file_get_contents('C:/wamp64/www/main/Renders/Users/'.$userid.'-fullshot-'.$x.'-'.$y.'.png');
     } else {
         if($x < 101 || $y < 101)
         {
-            $RCCServiceSoap = new RCCServiceSoap("26.136.77.48", 64989);
+            $RCCServiceSoap = new RCCServiceSoap("184.15.207.198", 64989);
 
             $job = new Job("ThumbnailGenerator");
-            $charapp = "https://assetgame.".$url."/v1.1/avatar-fetch?userid=".$userid;
+            $charapp = "http://assetgame.".$url."/v1.1/avatar-fetch?userid=".$userid;
 
             $scriptfunny = '
             local player = game.Players:CreateLocalPlayer(0)
@@ -56,7 +56,7 @@
             $batchjob = $RCCServiceSoap->BatchJob($job, $script);
             $render = base64_decode($batchjob[0]);
 
-            file_put_contents('C:/xampp/htdocs/configuration/Renders/Users/'.$userid.'-fullshot-'.$x.'-'.$y.'.png', $render);
+            file_put_contents('C:/wamp64/www/main/Renders/Users/'.$userid.'-fullshot-'.$x.'-'.$y.'.png', $render);
         } else {
             exit();
         }

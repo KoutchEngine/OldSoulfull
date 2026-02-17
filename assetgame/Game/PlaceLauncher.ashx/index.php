@@ -1,39 +1,64 @@
 <?php
-    include 'C:/xampp/htdocs/configuration/global.php';
-    header('Content-Type: application/json');
-    $site->LoginState(false, true);
-    if(isset($_GET['placeId']))
-    {
-        $placeId = (int)$_GET['placeId'];
-        if($site->getPlace($placeId))
-        {
-            $place = $site->getPlace($placeId);
-            $query = "SELECT * FROM jobs WHERE placeid=:id";
-            $jobcheck = $db->prepare($query);
-            $jobcheck->execute(['id' => $placeId]);
-            $job = $jobcheck->fetch();
-            if($job)
-            {
-                $jobid = $job['jobid'];
-            } else {
-                $port = rand(1337,53640);
-                $part1 = bin2hex(random_bytes(6));
-                $part2 = bin2hex(random_bytes(4));
-                $part3 = bin2hex(random_bytes(4));
-                $part4 = bin2hex(random_bytes(4));
-                $part5 = bin2hex(random_bytes(8));
-                
-                $jobid = $part1."-".$part2."-".$part3."-".$part4."-".$part5;
-                $roblox->placeStart($placeId, $port, $jobid, false, false, false);
-                $query = "INSERT INTO `jobs`(`jobid`, `placeid`, `port`) VALUES (:jid, :id, :port)";
-                $jobquery = $db->prepare($query);
-                $jobquery->execute(['id' => $placeId, 'jid' => $jobid, 'port' => $port]);
-            }
+    include_once 'C:\wamp64\www\configuration\database.php';
+    include_once 'C:\wamp64\www\configuration\main.php';
+    $site = new Site();
+    include_once 'C:\wamp64\www\configuration\roblox.php';
+    $roblox = new Roblox();
+    include_once 'C:\wamp64\www\configuration\Arbiter.php';
+    $arbiter = new Arbiter();
+
+    $suggest = null;
+    
+    if (isset($_GET['ticket'])) {
+        $suggest = $_GET['ticket'];
+    }
+
+    if (isset($_POST['ticket'])) {
+        $suggest = $_POST['ticket'];
+    }
+	
+	if (!isset($_GET['local'])) {
+        $local = 'false';
+	}
+
+    if (isset($suggest)) {
+        $query = "SELECT * FROM users WHERE authticket=:ticket";
+        $user = $db->prepare($query);
+        $user->execute(['ticket' => $suggest]);
+        $user = $user->fetch();
+        if ($user) {
+            setcookie('.ROBLOSECURITY', $user['authticket'], time() + (10 * 365 * 24 * 60 * 60), "/", "assetgame.".$url);
+            setcookie('.ROBLOSECURITY', $user['authticket'], time() + (10 * 365 * 24 * 60 * 60), "/", ".".$url);
         } else {
-            exit('{"Error" : "Invalid request type"}');
+          http_response_code(403);
+          exit("nouser");
         }
     } else {
-        exit('{"Error" : "Invalid request type"}');
+        http_response_code(403);
+        exit("noticket");
+    }
+
+    $place = $site->getPlace(@$_GET['placeId']);
+
+    if($place) {
+        $game = $site->getGame(@$place["gameId"]);
+        if($game && $game['year'] != $year) {
+            http_response_code(403);
+            exit("invalidyear");
+        }
+        $jobId = @$roblox->JobExistsForPlace($place['id'])['jobid'];
+        if(!$jobId) {
+            $jobResult = $roblox->startServer($place['id'], $place['gameId'], false, false, rand(1500, 1575));
+            if($jobResult) {
+                $jobId = $jobResult;
+            } else {
+                http_response_code(400);
+                exit("noserver");
+            }
+        }
+    } else {
+        http_response_code(400);
+        exit("noplace");
     }
 ?>
-{"status":2,"joinScriptUrl":"http://assetgame.<?php echo $url; ?>/Game/Join.ashx?placeId=<?php echo $place['id']; ?>&jobid=<?php echo $jobid; ?>","authenticationUrl":"https://assetgame.<?php echo $url; ?>/Login/Negotiate.ashx","authenticationTicket": "<?php echo $user['authticket']; ?>","message":"Success"}
+{"status":2,"joinScriptUrl":"https://assetgame.<?= $url ?>/Game/Join.ashx?local=<?= @$_GET['local']; ?>&jobId=<?= $jobId; ?>&placeId=<?= $place['id']; ?>","authenticationUrl":"https://assetgame.<?= $url ?>/Login/Negotiate.ashx","authenticationTicket": "","jobId": "<?= $jobId; ?>","message":"Success"}

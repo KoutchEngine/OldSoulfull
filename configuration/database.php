@@ -1,6 +1,6 @@
 <?php
 $user = "root";
-$pass = "KOUTCHREV_PRIVATE_DONOT_TRY_TOACCESS_LOL_LOL_LOLLOL_LOL";
+$pass = "S16R_PRIVAT_DONLEA_13K";
 try {
     global $db;
     $db = new PDO('mysql:host=localhost;dbname=soulfulldbnew', $user, $pass);

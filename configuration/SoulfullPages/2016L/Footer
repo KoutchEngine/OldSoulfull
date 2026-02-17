@@ -1,0 +1,41 @@
+<footer class="container-footer">
+                <div class="footer">
+                    <ul class="row footer-links">
+                            <li class="col-4 col-xs-2 footer-link">
+                                <a href="//corp.%url%" class="text-footer-nav roblox-interstitial" target="_blank">
+                                    About Us
+                                </a>
+                            </li>
+                            <li class="col-4 col-xs-2 footer-link">
+                                <a href="//corp.%url%/jobs" class="text-footer-nav roblox-interstitial" target="_blank">
+                                    Jobs
+                                </a>
+                            </li>
+                        <li class="col-4 col-xs-2 footer-link">
+                            <a href="//blog.%url%" class="text-footer-nav" target="_blank">
+                                Blog
+                            </a>
+                        </li>
+                        <li class="col-4 col-xs-2 footer-link">
+                            <a href="//corp.%url%/parents" class="text-footer-nav roblox-interstitial" target="_blank">
+                                Parents
+                            </a>
+                        </li>
+                        <li class="col-4 col-xs-2 footer-link">
+                            <a href="//en.help.%url%/" class="text-footer-nav roblox-interstitial" target="_blank">
+                                Help
+                            </a>
+                        </li>
+                        <li class="col-4 col-xs-2 footer-link">
+                            <a href="http://www.%url%/Info/Privacy.aspx" class="text-footer-nav privacy" target="_blank">
+                                Privacy
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="text-footer footer-note">
+                        ROBLOX, "Online Building Toy", characters, logos, names, and all related indicia are trademarks of <a target="_blank" href="//corp.%url%" class="text-link roblox-interstitial">ROBLOX Corporation</a>, ©2016.
+                        Patents pending. ROBLOX is not sponsored, authorized or endorsed by any producer of plastic building bricks, including The LEGO Group, MEGA Brands, and K\'\Nex, and no resemblance to the products of these companies is intended.
+                        Use of this site signifies your acceptance of the <a href="http://www.%url%/info/terms-of-service" target="_blank" class="text-link">Terms and Conditions</a>.
+                    </p>
+                </div>
+            </footer>

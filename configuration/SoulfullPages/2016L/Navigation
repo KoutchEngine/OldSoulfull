@@ -1,0 +1,135 @@
+<div id="header" class="navbar-fixed-top rbx-header" role="navigation">
+    <div class="container-fluid">
+        <div class="rbx-navbar-header">
+            <div data-behavior="nav-notification" class="rbx-nav-collapse" onselectstart="return false;">
+                    <span class="icon-nav-menu"></span>
+
+                
+
+            </div>
+            <div class="navbar-header">
+                <a class="navbar-brand" href="//www.%url%/">
+                    <span class="icon-logo"></span>
+                    <span class="icon-logo-r"></span>
+                </a>
+            </div>
+        </div>
+        <ul class="nav rbx-navbar hidden-xs hidden-sm col-md-4 col-lg-3">
+            <li>
+                <a class="nav-menu-title" href="http://www.%url%/games">Games</a>
+            </li>
+            <li>
+                <a class="nav-menu-title" href="http://www.%url%/catalog">Catalog</a>
+            </li>
+            <li>
+                <a class="nav-menu-title" href="http://www.%url%/develop">Develop</a>
+            </li>
+            <li>
+                <a class="buy-robux nav-menu-title" href="http://www.%url%/upgrades/robux?ctx=nav">ROBUX</a>
+            </li>
+        </ul><!--rbx-navbar-->
+        <div id="navbar-universal-search" class="navbar-left rbx-navbar-search col-xs-5 col-sm-6 col-md-3" data-behavior="univeral-search" role="search">
+            <div class="input-group">
+
+                <input id="navbar-search-input" class="form-control input-field" type="text" placeholder="Search" maxlength="120">
+                <div class="input-group-btn">
+                    <button id="navbar-search-btn" class="input-addon-btn" type="submit">
+                        <span class="icon-nav-search"></span>
+                    </button>
+                </div>
+            </div>
+            <ul data-toggle="dropdown-menu" class="dropdown-menu" role="menu">
+                <li class="rbx-navbar-search-option selected" data-searchurl="http://www.%url%/games/?Keyword=">
+                    <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in Games</span>
+                </li>
+                        <li class="rbx-navbar-search-option" data-searchurl="http://www.%url%/search/users?keyword=">
+                            <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in People</span>
+                        </li>
+                        <li class="rbx-navbar-search-option" data-searchurl="http://www.%url%/catalog/browse.aspx?CatalogContext=1&amp;Keyword=">
+                            <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in Catalog</span>
+                        </li>
+                        <li class="rbx-navbar-search-option" data-searchurl="http://www.%url%/groups/search.aspx?val=">
+                            <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in Groups</span>
+                        </li>
+                        <li class="rbx-navbar-search-option" data-searchurl="http://www.%url%/develop/library?CatalogContext=2&amp;Category=6&amp;Keyword=">
+                            <span class="rbx-navbar-search-text">Search <span class="rbx-navbar-search-string"></span> in Library</span>
+                        </li>
+            </ul>
+        </div><!--rbx-navbar-search-->
+        <div class="navbar-right rbx-navbar-right col-xs-4 col-sm-3">
+
+%ls%        </div><!-- navbar right-->
+        <ul class="nav rbx-navbar hidden-md hidden-lg col-xs-12">
+            <li>
+                <a class="nav-menu-title" href="http://www.%url%/games">Games</a>
+            </li>
+            <li>
+                <a class="nav-menu-title" href="http://www.%url%/catalog/">Catalog</a>
+            </li>
+            <li>
+                <a class="nav-menu-title" href="http://www.%url%/develop">Develop</a>
+            </li>
+            <li>
+                <a class="buy-robux nav-menu-title" href="http://www.%url%/upgrades/robux?ctx=nav">ROBUX</a>
+            </li>
+        </ul><!--rbx-navbar-->
+    </div>
+</div>
+
+<!-- LEFT NAV MENU -->
+    <div id="navigation" class="rbx-left-col" data-behavior="left-col">
+        %ls2%
+
+        <div class="rbx-scrollbar" data-toggle="scrollbar" onselectstart="return false;">
+            <ul>
+                <li><a href="http://www.%url%/home" id="nav-home"><span class="icon-nav-home"></span><span>Home</span></a></li>
+                <li><a href="http://www.%url%/users/81956425/profile" id="nav-profile"><span class="icon-nav-profile"></span><span>Profile</span></a></li>
+                <li>
+                    <a href="http://www.%url%/my/messages/#!/inbox" id="nav-message" data-count="2">
+                        <span class="icon-nav-message"></span><span>Messages</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.%url%/users/81956425/friends#!/friend-requests" id="nav-friends" data-count="23">
+                        <span class="icon-nav-friends"></span><span>Friends</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.%url%/my/character.aspx" id="nav-character">
+                        <span class="icon-nav-charactercustomizer"></span><span>Avatar</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.%url%/users/81956425/inventory" id="nav-inventory">
+                        <span class="icon-nav-inventory"></span><span>Inventory</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.%url%/my/money.aspx#/#TradeItems_tab" id="nav-trade">
+                        <span class="icon-nav-trade"></span><span>Trade</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.%url%/my/groups.aspx" id="nav-group">
+                        <span class="icon-nav-group"></span><span>Groups</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://forum.%url%/forum/" id="nav-forum">
+                        <span class="icon-nav-forum"></span><span>Forum</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="//blog.%url%" id="nav-blog">
+                        <span class="icon-nav-blog"></span><span>Blog</span>
+                    </a>
+                </li>
+                <li class="rbx-upgrade-now">
+                    <a href="http://www.%url%/premium/membership?ctx=leftnav" class="btn-secondary-md" id="upgrade-now-button">Upgrade Now</a>
+                </li>
+                    <li class="font-bold small">
+                        Events
+                    </li>
+            </ul>
+        </div>
+    </div>

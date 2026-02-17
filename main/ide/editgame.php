@@ -1,3 +1,3 @@
 <?php
-    include 'C:/xampp/htdocs/configuration/global.php';
+    include 'C:/wamp64/www/configuration/global.php';
 ?>

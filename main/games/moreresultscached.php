@@ -1,6 +1,6 @@
 
 <?php
- include 'C:/xampp/htdocs/configuration/global.php';
+ include 'C:/wamp64/www/configuration/global.php';
  $site->LoginState(false, false);
 if(isset($_GET['MaxRows']))
 {
@@ -19,16 +19,16 @@ if(isset($_GET['MaxRows']))
         }
         $place = $site->getPlace($game['startPlace']);
         $creator = $site->getUser($place['creatorId']);
-        $render = base64_encode($roblox->renderGame($game['startPlace'], 150, 150));
+        $roblox->renderGame($game['startPlace'], 150, 150, false);
  ?>
  <li class="list-item game-card">
     <div class="game-card-container">
-        <a href="https://www.<?php echo $url; ?>/games/refer?TimeFilter=0&amp;GenreFilter=0&amp;PlaceId=<?php echo $place['id']; ?>&amp;Position=1&amp;PageType=GameSearch" class="game-card-link">
+        <a href="http://www.<?php echo $url; ?>/games/refer?TimeFilter=0&amp;GenreFilter=0&amp;PlaceId=<?php echo $place['id']; ?>&amp;Position=1&amp;PageType=GameSearch" class="game-card-link">
             <div class="game-card-thumb-container">
-                <img class="game-card-thumb" src="data:image/png;base64,<?php echo $render; ?>" alt="<?php echo $place['gamename']; ?>" thumbnail="{&quot;Final&quot;:true,&quot;Url&quot;:&quot;https://t1.rbxcdn.com/03e7f2cb71971aeaaec6b13ba56ce364&quot;,&quot;RetryUrl&quot;:null}" image-retry/>
+                <img class="game-card-thumb" src="/Renders/Games/<?php echo $place['id']; ?>-150-150.png" alt="<?php echo protecc($place['gamename']); ?>" thumbnail="{&quot;Final&quot;:true,&quot;Url&quot;:&quot;http://t1.rbxcdn.com/03e7f2cb71971aeaaec6b13ba56ce364&quot;,&quot;RetryUrl&quot;:null}" image-retry/>
             </div>
-            <div class="text-overflow game-card-name" title="<?php echo $place['gamename']; ?>" ng-non-bindable>
-            <?php echo $place['gamename']; ?>
+            <div class="text-overflow game-card-name" title="<?php echo protecc($place['gamename']); ?>" ng-non-bindable>
+            <?php echo protecc($place['gamename']); ?>
             </div>
             <div class="game-card-name-secondary">
                 0 Playing
@@ -61,7 +61,7 @@ if(isset($_GET['MaxRows']))
         </a>
         <span class="game-card-footer">
         <span class="text-label xsmall">By </span>
-        <a class="text-link xsmall text-overflow" href="https://www.<?php echo $url; ?>/users/<?php echo $creator['id']; ?>/profile"><?php echo $creator['username']; ?></a>
+        <a class="text-link xsmall text-overflow" href="http://www.<?php echo $url; ?>/users/<?php echo $creator['id']; ?>/profile"><?php echo protecc($creator['username']); ?></a>
     </span>
     </div>
 </li>

@@ -1,5 +1,5 @@
 <?php
-    include 'C:/xampp/htdocs/configuration/global.php';
+    include 'C:/wamp64/www/configuration/global.php';
     // i hate this
     $inputstuff = file_get_contents("php://input");
     parse_str($inputstuff, $userinfo);
@@ -10,7 +10,7 @@
     } else {
         $query = "SELECT * FROM users WHERE username=:username";
         $usercheck = $db->prepare($query);
-        $usercheck->execute(['username' => htmlspecialchars(filter_var($userinfo['username']))]);
+        $usercheck->execute(['username' => protecc(filter_var($userinfo['username']))]);
         $usercheck = $usercheck->fetch();
 
         if($usercheck) {
@@ -23,7 +23,7 @@
             $userquery = $db->prepare($query);
             $userquery->execute([
                 'id' => $userid,
-                'username' => htmlspecialchars(filter_var($userinfo['username'])),
+                'username' => protecc(filter_var($userinfo['username'])),
                 'password' => $password,
                 'gender' => $userinfo['gender'],
                 'birthday' => $userinfo['birthday'],

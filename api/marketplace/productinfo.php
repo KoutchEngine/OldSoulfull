@@ -1,5 +1,5 @@
 <?php
-    include 'C:/xampp/htdocs/configuration/global.php';
+    include 'C:/wamp64/www/configuration/global.php';
     if(isset($_GET['assetId']))
     {
         $assetid = (int)$_GET['assetId'];
@@ -8,7 +8,7 @@
         if($site->getPlace($assetid))
         {
             $foundThing = $site->getPlace($assetid);
-            $name = $foundThing['gamename'];
+            $name = protecc($foundThing['gamename']);
             $assetid = $foundThing['id'];
             $creator = $site->getUser($foundThing['creatorId']);
         }
@@ -28,7 +28,7 @@
     "AssetTypeId": 8,
     "Creator": {
         "Id": <?php echo $creator['id']; ?>,
-        "Name": "<?php echo $creator['username']; ?>"
+        "Name": "<?php echo protecc($creator['username']); ?>"
     },
     "IconImageAssetId": 0,
     "Created": "<?php echo $foundThing['createdTime']; ?>",

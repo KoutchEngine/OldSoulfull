@@ -28,7 +28,7 @@ class RCCServiceSoap
 		$this->ip = $url;
 		$this->port = $port;
 		$this->url = $url.$port;
-		$this->SoapClient = new SoapClient(__DIR__."/RCCService.wsdl", ["location" => "http://".$url.":".$port, "uri" => "http://s16rev.xyz/", "classmap" => $this->classmap, "exceptions" => false]);
+		$this->SoapClient = new SoapClient(__DIR__."/RCCService.wsdl", ["location" => "http://".$url.":".$port, "uri" => "http://limrev.one/", "classmap" => $this->classmap, "exceptions" => false]);
 	}
 
 	// Begin function handlers

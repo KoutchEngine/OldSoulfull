@@ -2,6 +2,12 @@ RewriteEngine On
 
 Options -Indexes
 
+RewriteRule ^users/([0-9]+)/canmanage/([0-9]+)$ users/canmanage.php?id=$1 [L]
+
+RewriteRule ^users/([0-9]+)$ users/getuser.php?userId=$1 [L]
+
+RewriteRule ^universes/([0-9]+)/cloudeditenabled$ universes/cloudeditenabled.php?id=$1 [L]
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^([^\.]+)$ $1.php [NC,L]

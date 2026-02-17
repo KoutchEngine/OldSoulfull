@@ -1,6 +1,6 @@
 <?php
-// thx aze
-include 'C:/xampp/htdocs/configuration/global.php';
+// thx unknown+DN
+include 'C:/wamp64/www/configuration/global.php';
 $site->LoginState(false, true);
 header("content-type: application/xml");
 error_reporting(0);
@@ -29,7 +29,14 @@ if(isset($_GET['method']))
             $isingroup = "false";
             if($groupid == 1200769 && $user != null)
             {
-                if($user['admin'])
+                if($user['admin'] || $user['id'] == 4)
+                {
+                    $isingroup = "true";
+                }
+            } else if ($groupid == 2649054 && $user != null)
+            {
+                // epic minigames
+                if($user['id'] == 1)
                 {
                     $isingroup = "true";
                 }
@@ -40,7 +47,16 @@ if(isset($_GET['method']))
             die('<Value Type="integer">0</Value>');
             break;
         case "GetRankInGroup":
-            die('<Value Type="integer">0</Value>');
+            $rank = 0;
+            if($groupid == 2649054 && $user != null)
+            {
+                // epic minigames
+                if($user['id'] == 1)
+                {
+                    $rank = 255;
+                }
+            }
+            die('<Value Type="integer">'.$rank.'</Value>');
             break;
         case "GetGroupRole":
             die('');

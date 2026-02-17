@@ -1,0 +1,1 @@
+<?php $cool = 69420; die("$cool"); ?>

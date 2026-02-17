@@ -2,6 +2,8 @@ RewriteEngine On
 
 Options -Indexes
 
+RewriteRule ^places/([0-9]+)/settings$ places/placesjson.php?id=$1 [L]
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^([^\.]+)$ $1.php [NC,L]

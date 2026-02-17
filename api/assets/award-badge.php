@@ -1,5 +1,5 @@
 <?php
-    include 'C:/xampp/htdocs/configuration/global.php';
+    include 'C:/wamp64/www/configuration/global.php';
     $site->LoginState(false, true);
     if(isset($_GET['badgeId']) && isset($_GET['placeId']))
     {

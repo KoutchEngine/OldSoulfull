@@ -1,6 +1,5 @@
 <?php
-    include 'C:/xampp/htdocs/configuration/global.php';
-    header('Content-Type: application/json');
+    include 'C:/wamp64/www/configuration/global.php';
     $site->LoginState(false, true);
     echo $user['id'];
 ?>

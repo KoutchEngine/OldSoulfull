@@ -1,6 +1,7 @@
 <?php
-    include 'C:/xampp/htdocs/configuration/global.php';
+    include 'C:/wamp64/www/configuration/global.php';
     $site->LoginState(false, false);
+    $site->invitekey();
 ?>
 
 <!--[if IE 8]><html class="ie8" ng-app="robloxApp"><![endif]-->
@@ -12,7 +13,7 @@
     <title>Games - ROBLOX</title>
     <?php $site->robloxHtml("HTMLStarterPack"); ?>
 
-    <link rel="canonical" href="https://www.<?php echo $url; ?>/games/?SortFilter=default&amp;TimeFilter=0&amp;GenreFilter=1" />
+    <link rel="canonical" href="http://www.<?php echo $url; ?>/games/?SortFilter=default&amp;TimeFilter=0&amp;GenreFilter=1" />
     
 
 <link rel='stylesheet' href='//static.rbxcdn.com/css/page___3f4aa280c13ef5be46e8720037bd9e10_m.css/fetch' />
@@ -58,6 +59,7 @@
                  
                 
                 ">
+                <?php $site->robloxHtml("Alerts"); ?>
             <script type="text/javascript">
                 if (top.location != self.location) {
                     top.location = self.location.href;
@@ -804,7 +806,7 @@
 
 <div id="usernotifications-data-model"
      class="hidden"
-     data-notificationsdomain="https://realtime.<?php echo $url; ?>/"
+     data-notificationsdomain="http://realtime.<?php echo $url; ?>/"
      data-notificationstestinterval="5000"
      data-notificationsmaxconnectiontime="43200000">
 </div>    <script type="text/javascript">
@@ -834,8 +836,6 @@
 
     <script type="text/javascript">function urchinTracker() {}</script>
 
-
-<?php echo $site->robloxHtml("PlaceLauncherPanel"); ?>
 
 <div id="ProtocolHandlerStartingDialog" style="display:none;">
     <div class="modalPopup ph-modal-popup">
@@ -873,7 +873,7 @@
                 </button>
             </div>
             <div class="small">
-                <a href="https://en.help.roblox.com/hc/en-us/articles/204473560" class="text-name" target="_blank">Click here for help</a>
+                <a href="http://en.help.<?= $url ?>/hc/en-us/articles/204473560" class="text-name" target="_blank">Click here for help</a>
             </div>
 
         </div>
@@ -909,7 +909,7 @@
         </div>
         <div id="videoPrerollJoinBC">
             <span>Get more with Builders Club!</span>
-            <a href="https://www.roblox.com/premium/membership?ctx=preroll" target="_blank" class="btn-medium btn-primary" id="videoPrerollJoinBCButton">Join Builders Club</a>
+            <a href="http://www.<?= $url ?>/premium/membership?ctx=preroll" target="_blank" class="btn-medium btn-primary" id="videoPrerollJoinBCButton">Join Builders Club</a>
         </div>
     </div>   
     <script type="text/javascript">
@@ -960,8 +960,8 @@
         <div style="clear:both; height:25px;"></div>
         <div class="RevisedFooter">
             <div style="width:200px;margin:10px auto 0 auto;">
-                <a href="https://www.roblox.com/?returnUrl=https%3A%2F%2Fwww.roblox.com%2Fgames%2F%3FSortFilter%3Ddefault%26TimeFilter%3D0%26GenreFilter%3D1"><div class="RevisedCharacterSelectSignup"></div></a>
-                <a class="HaveAccount" href="https://www.roblox.com/newlogin?returnUrl=https%3A%2F%2Fwww.roblox.com%2Fgames%2F%3FSortFilter%3Ddefault%26TimeFilter%3D0%26GenreFilter%3D1">I have an account</a>
+                <a href="http://www.<?= $url ?>/?returnUrl=https%3A%2F%2Fwww.<?= $url ?>%2Fgames%2F%3FSortFilter%3Ddefault%26TimeFilter%3D0%26GenreFilter%3D1"><div class="RevisedCharacterSelectSignup"></div></a>
+                <a class="HaveAccount" href="http://www.<?= $url ?>/newlogin?returnUrl=https%3A%2F%2Fwww.<?= $url ?>%2Fgames%2F%3FSortFilter%3Ddefault%26TimeFilter%3D0%26GenreFilter%3D1">I have an account</a>
             </div>
         </div>
     </div>
@@ -1019,8 +1019,8 @@
 
 <?php $site->robloxHtml("JS_1"); ?>
 
-    <div id="push-notification-registrar-settings" data-notificationshost="https://notifications.roblox.com" data-reregistrationinterval="28800000"></div>
-    <div id="push-notification-registration-ui-settings" data-promptintervals="[86400000]" data-notificationsdomain="https://notifications.roblox.com" data-userid="81956425"></div>
+    <div id="push-notification-registrar-settings" data-notificationshost="http://notifications.<?= $url ?>" data-reregistrationinterval="28800000"></div>
+    <div id="push-notification-registration-ui-settings" data-promptintervals="[86400000]" data-notificationsdomain="http://notifications.<?= $url ?>" data-userid="81956425"></div>
     <script type="text/template" id="push-notifications-initial-global-prompt-template">
         <div class="push-notifications-global-prompt">
             <div class="alert-info push-notifications-global-prompt-site-wide-body">
@@ -1127,7 +1127,7 @@
         (function() {
             var s = document.createElement("script"), el = document.getElementsByTagName("script")[0];
             s.async = true;
-            s.src = (document.location.protocol == "https:" ? "https://sb" : "//b") + ".scorecardresearch.com/beacon.js";
+            s.src = (document.location.protocol == "https:" ? "http://sb" : "//b") + ".scorecardresearch.com/beacon.js";
             el.parentNode.insertBefore(s, el);
         })();
     </script>

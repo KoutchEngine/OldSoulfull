@@ -1,5 +1,5 @@
 <?php
-    include 'C:/xampp/htdocs/configuration/global.php';
+    include 'C:/wamp64/www/configuration/global.php';
     $site->LoginState(false, true);
     if(isset($_GET['placeId']))
     {
@@ -23,7 +23,7 @@
 
 <script>
     var placeid = <?php echo (int)$_GET['placeId']; ?>;
-    if(window.external.SaveUrl("http://data.s16rev.xyz/Data/Upload.ashx?assetId="+placeid)) {
+    if(window.external.SaveUrl("http://data.limrev.one/Data/Upload.ashx?assetId="+placeid)) {
         document.getElementById("publishmsg").textContent = "it published. congrats";
     } else {
         document.getElementById("publishmsg").textContent = "it didn't publish. congrats";
